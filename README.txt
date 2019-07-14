@@ -17,6 +17,7 @@ Technical Specifications
 -------------------------------------------------------------------------------
 
 Written in Haskell, using the Haskell Platform for Linux (Debian).
+Cabal is used to organize the project.
 
 -------------------------------------------------------------------------------
 Game Rules:
@@ -30,6 +31,20 @@ Game Rules:
 * When the game starts, you specify the number of letters to match.
 * This adaptation is case-sensitive.
 * Whitespace counts as normal text. You can match on spaces.
+
+
+-------------------------------------------------------------------------------
+How to Build and Run the Application
+-------------------------------------------------------------------------------
+
+Build:
+    $ cabal build
+
+    You may need to tweak `shiritori.cabal`, depending on your Haskell
+    environment.
+
+Run:
+    $ cabal run
 
 -------------------------------------------------------------------------------
 Sample gameplay:
