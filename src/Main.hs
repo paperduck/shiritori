@@ -50,7 +50,7 @@ prompt = do
         else
             if prev s == ""  
             then do  -- first turn
-                liftIO $ putStrLn $ "Okay. Now match the " ++ (show $ matchLength env) ++ " letters."
+                liftIO $ putStrLn $ "Okay. Now match " ++ (show $ matchLength env) ++ " letters."
                 put $ GameState {prev=entry, gameOver=(gameOver s)}
                 return entry
             else
