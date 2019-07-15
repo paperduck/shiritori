@@ -1,6 +1,5 @@
 
 # What is This?
--------------------------------------------------------------------------------
 
 This is an English adaptation of the Japanese game "Shiritori".
 
@@ -12,13 +11,11 @@ From Wikipedia:
     URL:  https://en.wikipedia.org/wiki/Shiritori
 
 # Technical Specifications
--------------------------------------------------------------------------------
 
 Written in Haskell, using the Haskell Platform for Linux (Debian).
 Cabal is used to organize the project.
 
 # Game Rules
--------------------------------------------------------------------------------
 
 * The objective is to match the beginning letters of your word with the ending
     letters of the previous word. For example, if the previous word was "apple"
@@ -32,7 +29,6 @@ Cabal is used to organize the project.
     as long as the characters match.
 
 # How to Build and Run the Application
--------------------------------------------------------------------------------
 
 ### Build
 
@@ -45,8 +41,7 @@ environment.
 
     $ cabal run
 
-Sample Gameplay
--------------------------------------------------------------------------------
+# Sample Gameplay
 
     $ cabal run
 
