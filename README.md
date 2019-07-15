@@ -1,6 +1,5 @@
 
--------------------------------------------------------------------------------
-What is This?
+# What is This?
 -------------------------------------------------------------------------------
 
 This is an English adaptation of the Japanese game "Shiritori".
@@ -12,15 +11,13 @@ From Wikipedia:
     literally means "taking the end" or "taking the rear".
     URL:  https://en.wikipedia.org/wiki/Shiritori
 
--------------------------------------------------------------------------------
-Technical Specifications
+# Technical Specifications
 -------------------------------------------------------------------------------
 
 Written in Haskell, using the Haskell Platform for Linux (Debian).
 Cabal is used to organize the project.
 
--------------------------------------------------------------------------------
-Game Rules:
+# Game Rules
 -------------------------------------------------------------------------------
 
 * The objective is to match the beginning letters of your word with the ending
@@ -34,20 +31,20 @@ Game Rules:
 * Words are not checked for validity. You can type nonsense if you want,
     as long as the characters match.
 
--------------------------------------------------------------------------------
-How to Build and Run the Application
+# How to Build and Run the Application
 -------------------------------------------------------------------------------
 
-Build:
+### Build
+
     $ cabal build
 
-    You may need to tweak `shiritori.cabal`, depending on your Haskell
-    environment.
+You may need to tweak `shiritori.cabal`, depending on your Haskell
+environment.
 
-Run:
+### Run
+
     $ cabal run
 
--------------------------------------------------------------------------------
 Sample Gameplay
 -------------------------------------------------------------------------------
 
@@ -75,6 +72,6 @@ Sample Gameplay
     History (2-letter matches):
         computer, ergonomic, iceberg, grand
 
-Screenshot:
+### Screenshot:
 
 ![Sample gameplay screenshot](sample_gameplay.png)
