@@ -10,6 +10,12 @@ import Data.List                (intersperse)
 import Data.List.Extra          (trim)
 import Text.Read                (readMaybe)
 
+-- Mutable game state
+data GameState = GameState {prev::String, gameOver::Bool}
+
+-- Read-only settings
+data Env = Env {matchLength::Int}
+
 -- Start a new game
 main :: IO ()
 main = do
@@ -90,10 +96,4 @@ showMatch len prev new = putStrLn $
 -- Show word history
 showHistory :: Int -> [String] -> IO ()
 showHistory n ss = putStrLn $ "History (" ++ (show n) ++ "-letter matches):\n    " ++ (concat $ intersperse ", " ss)
-
--- Mutable game state
-data GameState = GameState {prev::String, gameOver::Bool}
-
--- Read-only settings
-data Env = Env {matchLength::Int}
 
