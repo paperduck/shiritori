@@ -48,7 +48,7 @@ Run:
     $ cabal run
 
 -------------------------------------------------------------------------------
-Sample gameplay:
+Sample Gameplay
 -------------------------------------------------------------------------------
 
     $ cabal run
@@ -75,3 +75,6 @@ Sample gameplay:
     History (2-letter matches):
         computer, ergonomic, iceberg, grand
 
+Screenshot:
+
+![Sample gameplay screenshot](sample_gameplay.png)
