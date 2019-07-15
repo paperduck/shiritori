@@ -10,6 +10,7 @@ import Data.List                (intersperse)
 import Data.List.Extra          (trim)
 import Text.Read                (readMaybe)
 
+-- Start a new game
 main :: IO ()
 main = do
     n <- go
@@ -25,6 +26,7 @@ main = do
                 Nothing -> putStrLn "Please enter a non-zero whole number." >> go
                 Just n -> return n
 
+-- Game loop
 play :: RWST Env [String] GameState IO ()
 play = do
     s <- get
@@ -34,6 +36,7 @@ play = do
         listen prompt >>= (\(a,w) -> tell [a])
         play
 
+-- Get input from user and judge it.
 prompt :: RWST Env [String] GameState IO String
 prompt = do
     s <- get
@@ -63,12 +66,15 @@ prompt = do
                     put $ GameState {prev=entry, gameOver=True}
                     return entry
 
+-- Game over
 showGameOver :: RWST Env [String] GameState IO ()
 showGameOver = liftIO $ putStrLn "---- No Match. Game Over. ----\n"
 
+-- Judge if new entry is a match or not
 isMatch :: Int -> String -> String -> Bool
 isMatch n prev entry = (take n entry) == (reverse $ take n $ reverse prev)
 
+-- Describe a successful match to the user
 showMatch :: Int -> String -> String -> IO ()
 showMatch len prev new = putStrLn $
     "    MATCH: "
@@ -81,10 +87,13 @@ showMatch len prev new = putStrLn $
         new1 = take len new
         new2 = drop len new
 
+-- Show word history
 showHistory :: Int -> [String] -> IO ()
 showHistory n ss = putStrLn $ "History (" ++ (show n) ++ "-letter matches):\n    " ++ (concat $ intersperse ", " ss)
 
+-- Mutable game state
 data GameState = GameState {prev::String, gameOver::Bool}
 
+-- Read-only settings
 data Env = Env {matchLength::Int}
 
