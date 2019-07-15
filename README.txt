@@ -31,7 +31,8 @@ Game Rules:
 * When the game starts, you specify the number of letters to match.
 * This adaptation is case-sensitive.
 * Whitespace counts as normal text. You can match on spaces.
-
+* Words are not checked for validity. You can type nonsense if you want,
+    as long as the characters match.
 
 -------------------------------------------------------------------------------
 How to Build and Run the Application
