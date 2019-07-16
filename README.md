@@ -3,12 +3,13 @@
 
 This is an English adaptation of the Japanese game "Shiritori".
 
-From Wikipedia:
+From Wikipedia: (https://en.wikipedia.org/wiki/Shiritori)
+
     Shiritori is a Japanese word game in which the players are required to
     say a word which begins with the final kana of the previous word.
     No distinction is made between hiragana, katakana or kanji. "Shiritori"
     literally means "taking the end" or "taking the rear".
-    URL:  https://en.wikipedia.org/wiki/Shiritori
+
 
 # Technical Specifications
 
@@ -24,7 +25,7 @@ Cabal is used to organize the project.
     the word "lenses" would be a valid entry.
 * When the game starts, you specify the number of letters to match.
 * This adaptation is case-sensitive.
-* Whitespace counts as normal text. You can match on spaces.
+* Whitespace is ignored before and after entries, but not inside.
 * Words are not checked for validity. You can type nonsense if you want,
     as long as the characters match.
 
