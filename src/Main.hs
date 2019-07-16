@@ -17,7 +17,11 @@ data GameState = GameState {mPrev :: Maybe String, gameOver::Bool}
 data Env = Env {matchLength::Int}
 
 -- for judging entries
-data EntryType = EmptyEntry | ShortEntry String | FirstEntry String String | Match String | NonMatch
+data EntryType = EmptyEntry
+                | ShortEntry {msg::String}
+                | FirstEntry {prev::String, msg::String}
+                | Match {prev::String}
+                | NonMatch
 
 -- Start a new game
 main :: IO ()
@@ -44,9 +48,7 @@ play = do
     s <- get
     if gameOver s
     then liftIO $ putStrLn gameOverMsg
-    else do
-        listen prompt >>= (\(a,w) -> tell [a])
-        play
+    else listen prompt >>= (\(a,w) -> tell [a]) >> play
 
 -- Get input from user and return it
 prompt :: RWST Env [String] GameState IO String
@@ -55,22 +57,23 @@ prompt = do
     env <- ask
     liftIO $ putStrLn "\nEnter a word: "
     entry <- liftIO $ getLine
-    case judge (matchLength env) (mPrev s) (trim entry) of
-        EmptyEntry -> prompt
-        ShortEntry msg -> do
-            liftIO . putStrLn $ msg
-            prompt  
-        FirstEntry prev msg -> do
-            liftIO $ putStrLn $ msg
-            put $ GameState {mPrev = Just prev, gameOver=(gameOver s)}
-            return entry
-        Match prev -> do
-            put $ GameState {mPrev = Just (trim entry), gameOver=(gameOver s)}
-            liftIO $ putStrLn $ describeMatch (matchLength env) prev (trim entry)
-            return entry
-        NonMatch -> do
-            put $ GameState {mPrev = (mPrev s), gameOver=True}
-            return entry
+    let e = trim entry in
+        case judge (matchLength env) (mPrev s) e of
+            EmptyEntry -> prompt
+            ShortEntry msg -> do
+                liftIO . putStrLn $ msg
+                prompt  
+            FirstEntry prev msg -> do
+                liftIO $ putStrLn $ msg
+                put $ GameState {mPrev = Just prev, gameOver=(gameOver s)}
+                return e
+            Match prev -> do
+                put $ GameState {mPrev = Just e, gameOver=(gameOver s)}
+                liftIO $ putStrLn $ describeMatch (matchLength env) prev e
+                return e
+            NonMatch -> do
+                put $ GameState {mPrev = (mPrev s), gameOver=True}
+                return e
 
 -- Judge an entry
 judge :: Int -> Maybe String -> String -> EntryType
